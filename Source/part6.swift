@@ -35,6 +35,11 @@ class Node {
         }
     }
 
+    func find()
+    {
+        
+    }
+
     /*func print() -> [() -> [() -> Void]]
     {
         let printList: [() -> Void] = []
