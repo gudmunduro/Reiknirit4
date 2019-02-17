@@ -35,24 +35,37 @@ class Node {
         }
     }
 
-    func find()
+    func find(number: Int) -> Bool
     {
-        
+        if self.number == number {
+            return true
+        } else if self.number > number {
+            guard let left = self.leftBranch else {
+                return false
+            }
+            return left.find(number: number)
+        } else {
+            guard let right = self.rightBranch else {
+                return false
+            }
+            return right.find(number: number)
+        }
     }
 
-    /*func print() -> [() -> [() -> Void]]
+    func addToPrintList(printList: inout [[Int]], level: Int = 0)
     {
-        let printList: [() -> Void] = []
+        if printList.count < level + 1 {
+            printList.append([])
+        }
+        printList[level].append(self.number)
+
         if let left = self.leftBranch {
-            print(left.number)
-            printList.append(left.print)
+            left.addToPrintList(printList: &printList, level: level+1)
         }
         if let right = self.rightBranch {
-            print(right.number)
-            printList.append(left.print)
+            right.addToPrintList(printList: &printList, level: level+1)
         }
-        return printList
-    }*/
+    }
 }
 
 class Tree {
@@ -69,26 +82,30 @@ class Tree {
         return r.insert(number: number)
     }
 
-    func find(number: Int) -> Node
-    {
-        return Node(number: 0)
-    }
-
-    /*func print()
+    func find(number: Int) -> Bool
     {
         guard let r = root else {
-            root = Node(number: number)
-            return true
+            return false
         }
-        var printFuncs: [() -> Void] = [ root.print ]
-        while printFuncs.count != 0 {
-            var oldPrintFuncs = printFuncs
-            printFuncs = []
-            for p in oldPrintFuncs {
-                printFuncs += p()
+        return r.find(number: number)
+    }
+
+    func printTree()
+    {
+        guard let r = root else {
+            print("Failed to print, no root defined")
+            return
+        }
+        var printList: [[Int]] = []
+        r.addToPrintList(printList: &printList)
+
+        for r in printList {
+            for i in r {
+                print(i, terminator: "   ")
             }
+            print()
         }
-    }*/
+    }
 
 }
 
@@ -98,4 +115,8 @@ func runTreeSearch()
     t.insert(number: 6)
     t.insert(number: 2)
     t.insert(number: 3)
+    t.insert(number: 1)
+    print("Find status \(t.find(number: 3))")
+    print("Find status 2 \(t.find(number: 4))")
+    t.printTree()
 }
