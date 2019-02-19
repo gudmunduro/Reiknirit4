@@ -6,7 +6,7 @@ func binarySearch(list: [Int], value: Int, startIndex: Int = 0) -> Int?
     }
     let center = list.count / 2
     if list[center] == value {
-        return center + startIndex + 1
+        return center + startIndex
     } else if list[center] < value {
         return binarySearch(list: Array(list[center...]), value: value, startIndex: startIndex + center)
     } else {

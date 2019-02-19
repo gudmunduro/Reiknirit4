@@ -15,7 +15,7 @@ func linearSearch(list: [Int], value: Int) -> Int?
                     return
                 }
                 if list[i] == value {
-                    index = i + 1
+                    index = i
                     group.leave()
                     return
                 }
@@ -31,7 +31,7 @@ func slowLinearSearch(list: [Int], value: Int) -> Int?
 {
     for i in 0..<list.count {
         if list[i] == value {
-            return i + 1
+            return i
         }
     }
     return nil
@@ -39,7 +39,7 @@ func slowLinearSearch(list: [Int], value: Int) -> Int?
 
 func runLinearSearch()
 {
-    var list = [5, 6, 16, 5, 4, 3, 12, 8, 5, 22, 3, 1, 89, 4, 5]
+    var list = [5, 6, 16, 5, 3, 12, 8, 5, 22, 3, 1, 89, 4]
     print("Filling list")
     for i in 0...1000 {
         list.append(i)

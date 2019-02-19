@@ -116,7 +116,10 @@ func runTreeSearch()
     t.insert(number: 2)
     t.insert(number: 3)
     t.insert(number: 1)
-    print("Find status \(t.find(number: 3))")
-    print("Find status 2 \(t.find(number: 4))")
+    guard let val: Int = input("Element to find") else {
+        print("Invalid input")
+        return
+    }
+    print("Find status \(t.find(number: val))")
     t.printTree()
 }

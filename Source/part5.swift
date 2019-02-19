@@ -9,6 +9,7 @@ extension Array where Iterator.Element == Int {
                 return true
             }
         }
+        self.insert(value, at: self.count)
         return false
     }
 }
